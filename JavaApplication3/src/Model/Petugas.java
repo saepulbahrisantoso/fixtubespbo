@@ -18,15 +18,20 @@ public class Petugas extends Orang implements Serializable {
         super(nama,alamat,jeniskelamin);
         this.idPetugas = idPetugas;
     }
-    void setId(int idPetugas){
-        this.idPetugas=idPetugas;
+    
+    public Petugas(String nama, String alamat, String jeniskelamin){
+        super(nama,alamat,jeniskelamin);
     }
-    int getId(){
+    
+    public void setIdPetugas(int idPetugas) {
+        this.idPetugas = idPetugas;
+    }
+    public int getIdPetugas() {
         return idPetugas;
     }
     @Override
     public String display() {
-       return (" Id Petugas   : " +this.getId()+ '\n' +
+       return (" Id Petugas   : " +this.getIdPetugas()+ '\n' +
                " Nama  : "+ this.getNama() + '\n' +
                " Alamat : "+ this.getAlamat() + '\n' +
                " Jenis Kelamin : " + this.getJenisKelamin());
