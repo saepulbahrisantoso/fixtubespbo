@@ -5,9 +5,6 @@
  */
 package Model;
 
-import java.util.*;
-import java.io.*;
-
 /**
  *
  * @author 1301144328_HendrawanIF3008
@@ -24,6 +21,12 @@ public class TempatWisata {
         this.kota = kota;
         this.provinsi = provinsi;
     }
+    
+    public TempatWisata(String nama, String kota, String provinsi) {
+        this.nama = nama;
+        this.kota = kota;
+        this.provinsi = provinsi;
+    }
 
     public int getId(){
         return idWisata;
@@ -36,11 +39,15 @@ public class TempatWisata {
     public String getKota() {
         return kota;
     }
-
+    
     public String getProvinsi() {
         return provinsi;
     }
-
+    
+    public void setIdTempatWisata(int idWisata){
+        this.idWisata = idWisata;
+    }
+    
     public void setNama(String nama) {
         this.nama = nama;
     }
