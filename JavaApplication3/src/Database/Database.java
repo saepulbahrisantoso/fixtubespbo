@@ -190,6 +190,21 @@ public class Database {
         }
         return p;
     }
+    /*
+    public Perjalanan getPerjalanan(int nomorPerjalanan){
+        Perjalanan p = null;
+        try {
+            String query = "SELECT * FROM `Perjalanan` WHERE `nomorperjalanan` = " + nomorPerjalanan;
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                p = new PaketWisata(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return p;
+    }
+    */
     
     public void updatePelanggan(Pelanggan p) {
         try {
@@ -230,6 +245,37 @@ public class Database {
             ex.printStackTrace();
         }
     }
+    
+    public void HapusPelanggan(Pelanggan p) {
+        try {
+            String query = "delete from `pelanggan` where idPelanggan ='"
+                    + p.getIdPelanggan();
+            st.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void HapusPetugas(Petugas p) {
+        try {
+            String query = "delete from `petugas` where idPetugas ='"
+                    + p.getIdPetugas();
+            st.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void HapusTempatWisata(TempatWisata p) {
+        try {
+            String query = "delete from `tempatwisata` where idWisata ='"
+                    + p.getId();
+            st.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     //Tinggal perjalanan sama PaketWisata
     public String[] getListIDPelanggan() {
         ArrayList<String> listId = new ArrayList<>();

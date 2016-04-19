@@ -111,6 +111,19 @@ public class Aplikasi {
         return p;
     }
     
+    /*
+    public Perjalanan getPerjalanan(int idP) {
+        for (Perjalanan p : daftarPerjalanan) {
+            if (p.getId() == idP) {
+                return p;
+            }
+        }
+        Perjalanan p = data;
+        daftarPaketWisata.add(p);
+        return p;
+    }
+    */
+    
     public void updatePelanggan(Pelanggan p) {
         data.updatePelanggan(p);
     }
@@ -121,6 +134,18 @@ public class Aplikasi {
     
     public void updateTempatWisata(TempatWisata p) {
         data.updateTempatWisata(p);
+    }
+    
+    public void hapusPelanggan(Pelanggan p){
+        data.HapusPelanggan(p);
+    }
+    
+    public void hapusPetugas(Petugas p){
+        data.HapusPetugas(p);
+    }
+    
+    public void hapusTempatWisata(TempatWisata tw){
+        data.HapusTempatWisata(tw);
     }
     
     public String[] getListIdPelanggan() {
