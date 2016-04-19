@@ -14,18 +14,21 @@ public class TempatWisata {
     private String nama;
     private String kota;
     private String provinsi;
+    private String jeniswisata;
 
-    public TempatWisata(int idWisata,String nama, String kota, String provinsi) {
+    public TempatWisata(int idWisata,String nama, String kota, String provinsi, String jeniswisata) {
         this.idWisata = idWisata;
         this.nama = nama;
         this.kota = kota;
         this.provinsi = provinsi;
+        this.jeniswisata = jeniswisata;
     }
     
-    public TempatWisata(String nama, String kota, String provinsi) {
+    public TempatWisata(String nama, String kota, String provinsi, String jeniswisata) {
         this.nama = nama;
         this.kota = kota;
         this.provinsi = provinsi;
+        this.jeniswisata = jeniswisata;
     }
 
     public int getId(){

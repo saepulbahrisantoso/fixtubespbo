@@ -6,44 +6,68 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Amalia
  */
 public class PaketWisata {
-    private ArrayList<TempatWisata> daftarTujuanWisata = new ArrayList<TempatWisata>();
-    private String JenisWisata; 
+    private ArrayList<TempatWisata> daftarTujuanWisata;
     private int Kapasitas;
     private double Biaya;
     private int idPaket;
 	
-    public PaketWisata(int idPaket, TempatWisata w, String JW, int Kap, double Biaya){
-        
+    public PaketWisata(int idPaket, TempatWisata w, int Kap, double Biaya){
+        daftarTujuanWisata = new ArrayList<TempatWisata>();
+        daftarTujuanWisata.add(w);
+        this.Kapasitas = Kap;
+        this.Biaya = Biaya;
+        this.idPaket = idPaket;
+    }
+    
+    public PaketWisata(TempatWisata w, int Kap, double Biaya){
+        daftarTujuanWisata = new ArrayList<TempatWisata>();
+        daftarTujuanWisata.add(w);
+        this.Kapasitas = Kap;
+        this.Biaya = Biaya;
+        this.idPaket = idPaket;
     }
     
     public int getId(){
         return idPaket;
     }
     
+    public void setIdPaketWisata(int idPaket){
+        this.idPaket = idPaket;
+    }
+    
     public void addTempatWisata(TempatWisata w){
         daftarTujuanWisata.add(w);
     }
     
-    public ArrayList<TempatWisata> getAllWisata(){
+    public TempatWisata getTempatWisata(int id){
+        return daftarTujuanWisata.get(id);
+    }
+    
+    public List<TempatWisata> getList(){
         return daftarTujuanWisata;
     }
     
-    public int getNWisata(){
-        return daftarTujuanWisata.size();
+    public String getNamaTempatWisata(){
+        return daftarTujuanWisata.get(idPaket).getNama();
+    }
+    
+    public String getKotaTempatWisata(){
+        return daftarTujuanWisata.get(idPaket).getKota();
+    }
+    
+    public String getProvinsiTempatWisata(){
+        return daftarTujuanWisata.get(idPaket).getProvinsi();
     }
     
     public double getBiaya(){
         return Biaya;
-    }
-    
-    public String getJenisWisata(){
-        return JenisWisata;
     }
     
     public int getKapasitas(){
@@ -56,10 +80,6 @@ public class PaketWisata {
 	
     public void setBiaya(int Biaya){
 	this.Biaya=Biaya;
-    }
-	
-    public void setJenisWisata(String JenisWisata){
-        this.JenisWisata=JenisWisata;
     }
 }
 

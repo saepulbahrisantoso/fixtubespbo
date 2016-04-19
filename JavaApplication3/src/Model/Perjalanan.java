@@ -13,12 +13,13 @@ import java.util.ArrayList;
  */
 public class Perjalanan {
     private PaketWisata paket;
-    private ArrayList<Pelanggan> turis = new ArrayList<Pelanggan>();
+    private ArrayList<Pelanggan> turis;
     private int nomorPerjalanan;
     
     public Perjalanan(Pelanggan p, PaketWisata paket){
-        //addPelanggan(p);
-        
+        turis = new ArrayList<Pelanggan>();
+        turis.add(p);
+        this.paket = paket;
     }
     
     public int getId(){

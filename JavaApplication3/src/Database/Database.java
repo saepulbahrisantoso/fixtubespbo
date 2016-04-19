@@ -5,6 +5,7 @@
  */
 package Database;
 
+import Model.PaketWisata;
 import Model.Pelanggan;
 import Model.Petugas;
 import Model.TempatWisata;
@@ -89,6 +90,26 @@ public class Database {
         }
     }
     
+    public void savePaketWisata(PaketWisata p) {
+        try {
+            String query = "INSERT INTO `paketwisata`(`kapasitas`, `biaya`,`namatempat`,`kota`,`provinsi`) VALUES ("
+                    + "'" + p.getKapasitas() + "',"
+                    + "'" + p.getBiaya() + "',"
+                    + "'" + p.getNamaTempatWisata() + "',"
+                    + "'" + p.getKotaTempatWisata() + "',"
+                    + "'" + p.getProvinsiTempatWisata() + "')";
+            st.execute(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = st.getGeneratedKeys();
+            int generatedId = -1;
+            if (rs.next()) {
+                generatedId = rs.getInt(1);
+            }
+            p.setIdPaketWisata(generatedId);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public Pelanggan getPelanggan(int idPelanggan) {
         Pelanggan p = null;
         try {
@@ -124,7 +145,7 @@ public class Database {
             String query = "SELECT * FROM `TempatWisata` WHERE `idWisata` = " + idWisata;
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                p = new TempatWisata(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                p = new TempatWisata(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

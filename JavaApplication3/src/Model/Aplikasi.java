@@ -44,11 +44,18 @@ public class Aplikasi {
         return p.getIdPetugas();
     }
     
-    public int createTempatWisata(String nama, String kota, String provinsi){
-        TempatWisata tw = new TempatWisata(nama,kota,provinsi);
+    public int createTempatWisata(String nama, String kota, String provinsi, String jeniswisata){
+        TempatWisata tw = new TempatWisata(nama,kota,provinsi,jeniswisata);
         daftarTempatWisata.add(tw);
         data.saveTempatWisata(tw);
         return tw.getId();
+    }
+    
+    public int createPaketWisata(TempatWisata tw, int kapasitas, double biaya){
+        PaketWisata pw = new PaketWisata(tw,kapasitas,biaya);
+        daftarPaketWisata.add(pw);
+        
+        return pw.getId();
     }
     
     public Pelanggan getPelanggan(int idP) {
