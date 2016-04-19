@@ -62,6 +62,14 @@ public class TempatWisata {
     public void setProvinsi(String provinsi) {
         this.provinsi = provinsi;
     }
+    
+    public void setJenisWisata(String jeniswisata){
+        this.jeniswisata = jeniswisata;
+    }
+    
+    public String getJenisWisata(){
+        return jeniswisata;
+    }
 
     @Override
     public String toString() {

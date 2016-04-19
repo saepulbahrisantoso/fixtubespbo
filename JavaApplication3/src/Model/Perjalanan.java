@@ -21,6 +21,10 @@ public class Perjalanan {
         turis.add(p);
         this.paket = paket;
     }
+
+    Perjalanan() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public int getId(){
         return nomorPerjalanan;
@@ -38,6 +42,14 @@ public class Perjalanan {
     
     public void setPaket(PaketWisata paket){
         this.paket = paket;
+    }
+    
+    public void setNomorPerjalanan(int nomorPerjalanan){
+        this.nomorPerjalanan = nomorPerjalanan;
+    }
+    
+    public int getNomorPerjalanan(){
+        return nomorPerjalanan;
     }
     
     public PaketWisata getPaket(){

@@ -7,6 +7,7 @@ package Database;
 
 import Model.PaketWisata;
 import Model.Pelanggan;
+import Model.Perjalanan;
 import Model.Petugas;
 import Model.TempatWisata;
 import java.sql.Connection;
@@ -74,10 +75,11 @@ public class Database {
     
     public void saveTempatWisata(TempatWisata p) {
         try {
-            String query = "INSERT INTO `tempatwisata`(`nama`, `kota`, `provinsi`) VALUES ("
+            String query = "INSERT INTO `tempatwisata`(`nama`, `kota`, `provinsi`,`jeniswisata`) VALUES ("
                     + "'" + p.getNama() + "',"
                     + "'" + p.getKota() + "',"
-                    + "'" + p.getProvinsi() + "')";
+                    + "'" + p.getProvinsi() + "',"
+                    + "'" + p.getJenisWisata() + "')";
             st.execute(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = st.getGeneratedKeys();
             int generatedId = -1;
@@ -90,14 +92,14 @@ public class Database {
         }
     }
     
-    public void savePaketWisata(PaketWisata p) {
+    public void savePaketWisata(PaketWisata p, TempatWisata tw) {
         try {
             String query = "INSERT INTO `paketwisata`(`kapasitas`, `biaya`,`namatempat`,`kota`,`provinsi`) VALUES ("
                     + "'" + p.getKapasitas() + "',"
                     + "'" + p.getBiaya() + "',"
-                    + "'" + p.getNamaTempatWisata() + "',"
-                    + "'" + p.getKotaTempatWisata() + "',"
-                    + "'" + p.getProvinsiTempatWisata() + "')";
+                    + "'" + tw.getNama() + "',"
+                    + "'" + tw.getKota() + "',"
+                    + "'" + tw.getProvinsi() + "')";
             st.execute(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = st.getGeneratedKeys();
             int generatedId = -1;
@@ -105,6 +107,28 @@ public class Database {
                 generatedId = rs.getInt(1);
             }
             p.setIdPaketWisata(generatedId);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void savePerjalanan(Perjalanan cek, Pelanggan p, PaketWisata paket) {
+        try {
+            String query = "INSERT INTO `perjalanan`(`idPelanggan`, `nama`,`alamat`,`jeniskelamin`,`idPaket`,`kapasitas`,`biaya`) VALUES ("
+                    + "'" + p.getIdPelanggan() + "',"
+                    + "'" + p.getNama() + "',"
+                    + "'" + p.getAlamat() + "',"
+                    + "'" + p.getJenisKelamin() + "',"
+                    + "'" + paket.getId() + "',"
+                    + "'" + paket.getKapasitas() + "',"
+                    + "'" + paket.getBiaya() + "')";
+            st.execute(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = st.getGeneratedKeys();
+            int generatedId = -1;
+            if (rs.next()) {
+                generatedId = rs.getInt(1);
+            }
+            cek.setNomorPerjalanan(generatedId);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -153,6 +177,20 @@ public class Database {
         return p;
     }
     
+    public PaketWisata getPaketWisata(int idPaket) {
+        PaketWisata p = null;
+        try {
+            String query = "SELECT * FROM `PaketWisata` WHERE `idPaket` = " + idPaket;
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                p = new PaketWisata(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return p;
+    }
+    
     public void updatePelanggan(Pelanggan p) {
         try {
             String query = "update pelanggan set nama ='"
@@ -184,7 +222,8 @@ public class Database {
             String query = "update tempatwisata set nama ='"
                     + p.getNama() + "', kota= '"
                     + p.getKota() + "', provinsi= '"
-                    + p.getProvinsi() + "' where idPetugas = "
+                    + p.getKota() + "', jeniswisata= '"
+                    + p.getProvinsi() + "' where idWisata = "
                     + p.getId();
             st.executeUpdate(query);
         } catch (SQLException ex) {

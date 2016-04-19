@@ -26,6 +26,8 @@ public class Aplikasi {
         this.daftarPelanggan = new ArrayList<>();
         this.daftarPetugas = new ArrayList<>();
         this.daftarTempatWisata = new ArrayList<>();
+        this.daftarPaketWisata = new ArrayList<>();
+        this.daftarPerjalanan = new ArrayList<>();
         this.data = new Database();
         data.connect();
     }
@@ -54,8 +56,15 @@ public class Aplikasi {
     public int createPaketWisata(TempatWisata tw, int kapasitas, double biaya){
         PaketWisata pw = new PaketWisata(tw,kapasitas,biaya);
         daftarPaketWisata.add(pw);
-        
+        data.savePaketWisata(pw, tw);
         return pw.getId();
+    }
+    
+    public int createPerjalanan(Pelanggan p, PaketWisata paket){
+        Perjalanan per = new Perjalanan(p,paket);
+        daftarPerjalanan.add(per);
+        data.savePerjalanan(per, p, paket);
+        return per.getId();
     }
     
     public Pelanggan getPelanggan(int idP) {
@@ -88,6 +97,17 @@ public class Aplikasi {
         }
         TempatWisata p = data.getTempatWisata(idP);
         daftarTempatWisata.add(p);
+        return p;
+    }
+    
+    public PaketWisata getPaketWisata(int idP) {
+        for (PaketWisata p : daftarPaketWisata) {
+            if (p.getId() == idP) {
+                return p;
+            }
+        }
+        PaketWisata p = data.getPaketWisata(idP);
+        daftarPaketWisata.add(p);
         return p;
     }
     

@@ -17,6 +17,9 @@ public class PaketWisata {
     private int Kapasitas;
     private double Biaya;
     private int idPaket;
+    private String tmpnama;
+    private String tmpkota;
+    private String tmpprovinsi;
 	
     public PaketWisata(int idPaket, TempatWisata w, int Kap, double Biaya){
         daftarTujuanWisata = new ArrayList<TempatWisata>();
@@ -32,6 +35,14 @@ public class PaketWisata {
         this.Kapasitas = Kap;
         this.Biaya = Biaya;
         this.idPaket = idPaket;
+    }
+    
+    public PaketWisata(int idPaket, int kapasitas, int biaya, String namatempat, String kota, String provinsi){
+        this.idPaket = idPaket;
+        this.Kapasitas = kapasitas;
+        this.tmpnama = namatempat;
+        this.tmpkota = kota;
+        this.tmpprovinsi = provinsi;
     }
     
     public int getId(){
@@ -54,18 +65,6 @@ public class PaketWisata {
         return daftarTujuanWisata;
     }
     
-    public String getNamaTempatWisata(){
-        return daftarTujuanWisata.get(idPaket).getNama();
-    }
-    
-    public String getKotaTempatWisata(){
-        return daftarTujuanWisata.get(idPaket).getKota();
-    }
-    
-    public String getProvinsiTempatWisata(){
-        return daftarTujuanWisata.get(idPaket).getProvinsi();
-    }
-    
     public double getBiaya(){
         return Biaya;
     }
@@ -81,5 +80,17 @@ public class PaketWisata {
     public void setBiaya(int Biaya){
 	this.Biaya=Biaya;
     }
+    
+    //GET TMP SEMENTARA
+    public String getTMPnama(){
+        return tmpnama;
+    }
+    public String getTMPkota(){
+        return tmpkota;
+    }
+    public String getTMPprovinsi(){
+        return tmpprovinsi;
+    }
+    
 }
 
