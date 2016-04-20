@@ -1,0 +1,2 @@
+Aplikasi Sistem Informasi Data Biro Perjalanan merupakan sebuah aplikasi berbasis desktop yang menggunakan java. User pada aplikasi ini adalah Admin, yang bertugas untuk melakukan pengelolaan terhadap pelanggan, petugas, tempat wisata, paket wisata dan perjalanan. 
+Aplikasi ini terdiri dari beberapa task seperti mengelola data pelanggan dan petugas, mengelola data tempat wisata dan paket wisata, dan mengelola perjalanan. Jenis pengelolaannya adalah tambah data, edit data, dan hapus data.
