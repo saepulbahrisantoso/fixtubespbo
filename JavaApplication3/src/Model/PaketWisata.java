@@ -14,39 +14,48 @@ import java.util.List;
  */
 public class PaketWisata {
     private ArrayList<TempatWisata> daftarTujuanWisata;
+    private String namaPaket;
     private int Kapasitas;
     private double Biaya;
     private int idPaket;
-    private String tmpnama;
-    private String tmpkota;
-    private String tmpprovinsi;
-	
-    public PaketWisata(int idPaket, TempatWisata w, int Kap, double Biaya){
+    private int tmpidWisata;
+    	
+    public PaketWisata(int idPaket, TempatWisata w, int Kap, double Biaya, String namaPaket){
         daftarTujuanWisata = new ArrayList<TempatWisata>();
         daftarTujuanWisata.add(w);
         this.Kapasitas = Kap;
         this.Biaya = Biaya;
         this.idPaket = idPaket;
+        this.namaPaket = namaPaket;
     }
     
-    public PaketWisata(TempatWisata w, int Kap, double Biaya){
+    public PaketWisata(TempatWisata w, int Kap, double Biaya, String namaPaket){
         daftarTujuanWisata = new ArrayList<TempatWisata>();
         daftarTujuanWisata.add(w);
         this.Kapasitas = Kap;
         this.Biaya = Biaya;
         this.idPaket = idPaket;
+        this.namaPaket = namaPaket;
     }
     
-    public PaketWisata(int idPaket, int kapasitas, int biaya, String namatempat, String kota, String provinsi){
+    public PaketWisata(int idPaket, int kapasitas, double biaya, int idWisata, String namaPaket){
         this.idPaket = idPaket;
         this.Kapasitas = kapasitas;
-        this.tmpnama = namatempat;
-        this.tmpkota = kota;
-        this.tmpprovinsi = provinsi;
+        this.Biaya = biaya;
+        this.tmpidWisata = idWisata;
+        this.namaPaket = namaPaket;
+    }
+    
+    public int getTMPidWisata(){
+        return tmpidWisata;
     }
     
     public int getId(){
         return idPaket;
+    }
+
+    public String getNamaPaket() {
+        return namaPaket;
     }
     
     public void setIdPaketWisata(int idPaket){
@@ -79,17 +88,6 @@ public class PaketWisata {
 	
     public void setBiaya(int Biaya){
 	this.Biaya=Biaya;
-    }
-    
-    //GET TMP SEMENTARA
-    public String getTMPnama(){
-        return tmpnama;
-    }
-    public String getTMPkota(){
-        return tmpkota;
-    }
-    public String getTMPprovinsi(){
-        return tmpprovinsi;
     }
     
 }

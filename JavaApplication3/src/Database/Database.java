@@ -94,12 +94,11 @@ public class Database {
     
     public void savePaketWisata(PaketWisata p, TempatWisata tw) {
         try {
-            String query = "INSERT INTO `paketwisata`(`kapasitas`, `biaya`,`namatempat`,`kota`,`provinsi`) VALUES ("
+            String query = "INSERT INTO `paketwisata`(`idwisata`, `namapaket`, `kapasitas`,`biaya`) VALUES ("
+                    + "'" + tw.getId() + "',"
+                    + "'" + p.getNamaPaket() + "',"
                     + "'" + p.getKapasitas() + "',"
-                    + "'" + p.getBiaya() + "',"
-                    + "'" + tw.getNama() + "',"
-                    + "'" + tw.getKota() + "',"
-                    + "'" + tw.getProvinsi() + "')";
+                    + "'" + p.getBiaya() + "')";
             st.execute(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = st.getGeneratedKeys();
             int generatedId = -1;
@@ -114,14 +113,11 @@ public class Database {
     
     public void savePerjalanan(Perjalanan cek, Pelanggan p, PaketWisata paket) {
         try {
-            String query = "INSERT INTO `perjalanan`(`idPelanggan`, `nama`,`alamat`,`jeniskelamin`,`idPaket`,`kapasitas`,`biaya`) VALUES ("
+            String query = "INSERT INTO `perjalanan`(`idPelanggan`, `idPaket`,`totalharga`,`jumlahorang` ) VALUES ("
                     + "'" + p.getIdPelanggan() + "',"
-                    + "'" + p.getNama() + "',"
-                    + "'" + p.getAlamat() + "',"
-                    + "'" + p.getJenisKelamin() + "',"
                     + "'" + paket.getId() + "',"
-                    + "'" + paket.getKapasitas() + "',"
-                    + "'" + paket.getBiaya() + "')";
+                    + "'" + cek.getHargaTotal() + "',"
+                    + "'" + cek.getJumlahorang() + "')";
             st.execute(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = st.getGeneratedKeys();
             int generatedId = -1;
@@ -183,28 +179,27 @@ public class Database {
             String query = "SELECT * FROM `PaketWisata` WHERE `idPaket` = " + idPaket;
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                p = new PaketWisata(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                p = new PaketWisata(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return p;
     }
-    /*
+    
     public Perjalanan getPerjalanan(int nomorPerjalanan){
         Perjalanan p = null;
         try {
             String query = "SELECT * FROM `Perjalanan` WHERE `nomorperjalanan` = " + nomorPerjalanan;
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                p = new PaketWisata(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                p = new Perjalanan(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return p;
     }
-    */
     
     public void updatePelanggan(Pelanggan p) {
         try {
@@ -246,6 +241,35 @@ public class Database {
         }
     }
     
+    
+    public void updatePaketWisata(PaketWisata p){
+        try {
+            String query = "update paketwisata set kapasitas ='"
+                    + p.getKapasitas() + "', biaya= '"
+                    + p.getBiaya() + "', namaPaket= '"
+                    + p.getNamaPaket() + "', idWisata= '"
+                    + p.getTMPidWisata() + "' where idPaket = "
+                    + p.getId();
+            st.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void updatePerjalanan(Perjalanan p){
+        try {
+            String query = "update perjalanan set idPelanggan ='"
+                    + p.getTmpidPelanggan() + "', idPaket= '"
+                    + p.getTmpidPaket() + "', hargatotal= '"
+                    + p.getHargaTotal() + "', jumlahorang= '"
+                    + p.getJumlahorang() + "' where nomorPerlanan = "
+                    + p.getId();
+            st.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public void HapusPelanggan(Pelanggan p) {
         try {
             String query = "delete from `pelanggan` where idPelanggan ='"
@@ -269,6 +293,26 @@ public class Database {
     public void HapusTempatWisata(TempatWisata p) {
         try {
             String query = "delete from `tempatwisata` where idWisata ='"
+                    + p.getId();
+            st.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void HapusPaketWisata(PaketWisata p){
+        try {
+            String query = "delete from `paketwisata` where idPaket ='"
+                    + p.getId();
+            st.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void HapusPerjalanan(Perjalanan p){
+        try {
+            String query = "delete from `nomorPerjalanan` where idWisata ='"
                     + p.getId();
             st.executeUpdate(query);
         } catch (SQLException ex) {

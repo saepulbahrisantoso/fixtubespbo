@@ -9,6 +9,7 @@ import Model.Aplikasi;
 import Model.PaketWisata;
 import Model.Pelanggan;
 import Model.TempatWisata;
+import Controller.Controller_HalamanUtama;
 
 /**
  *
@@ -20,9 +21,10 @@ public class Driver {
         
         Aplikasi model = new Aplikasi();
         
+        /*
         model.createPelanggan("Budi", "Bojongsoang","Laki");
         model.createPelanggan("Ali", "Dakol","Laki");
-        /*
+        
         model.createPetugas("cekidot", "tester", "Perempuan");
         model.createPetugas("SBS","Uhu","laki");
         model.createTempatWisata("CIATER", "Bandung", "Jabar", "Kolam");
@@ -40,6 +42,6 @@ public class Driver {
         } 
         */
         
-        // new ControllerLogin(model);
+         new Controller_HalamanUtama(model);
     }
 }

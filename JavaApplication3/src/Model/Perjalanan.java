@@ -15,15 +15,42 @@ public class Perjalanan {
     private PaketWisata paket;
     private ArrayList<Pelanggan> turis;
     private int nomorPerjalanan;
+    private int jumlahorang;
+    private int hargaTotal;
+    private int tmpidPaket;
+    private int tmpidPelanggan;
     
-    public Perjalanan(Pelanggan p, PaketWisata paket){
+    
+    public Perjalanan(Pelanggan p, PaketWisata paket, int hargaTotal, int jumlahorang){
         turis = new ArrayList<Pelanggan>();
         turis.add(p);
         this.paket = paket;
+        this.hargaTotal = hargaTotal;
+        this.jumlahorang = jumlahorang;
     }
 
-    Perjalanan() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getHargaTotal() {
+        return hargaTotal;
+    }
+
+    public int getJumlahorang() {
+        return jumlahorang;
+    }
+    
+    public Perjalanan (int nomorPerjalanan, int idPaket, int idPelanggan, int hartot, int jumlahorang){
+        this.nomorPerjalanan = nomorPerjalanan;
+        this.tmpidPaket = idPaket;
+        this.tmpidPelanggan = idPelanggan;
+        this.hargaTotal = hartot;
+        this.jumlahorang = jumlahorang;
+    }
+
+    public int getTmpidPaket() {
+        return tmpidPaket;
+    }
+
+    public int getTmpidPelanggan() {
+        return tmpidPelanggan;
     }
     
     public int getId(){

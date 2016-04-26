@@ -53,15 +53,15 @@ public class Aplikasi {
         return tw.getId();
     }
     
-    public int createPaketWisata(TempatWisata tw, int kapasitas, double biaya){
-        PaketWisata pw = new PaketWisata(tw,kapasitas,biaya);
+    public int createPaketWisata(TempatWisata tw, int kapasitas, double biaya, String namaPaket){
+        PaketWisata pw = new PaketWisata(tw,kapasitas,biaya,namaPaket);
         daftarPaketWisata.add(pw);
         data.savePaketWisata(pw, tw);
         return pw.getId();
     }
     
-    public int createPerjalanan(Pelanggan p, PaketWisata paket){
-        Perjalanan per = new Perjalanan(p,paket);
+    public int createPerjalanan(Pelanggan p, PaketWisata paket, int totalharga, int jumlahorang){
+        Perjalanan per = new Perjalanan(p,paket,totalharga,jumlahorang);
         daftarPerjalanan.add(per);
         data.savePerjalanan(per, p, paket);
         return per.getId();
@@ -110,19 +110,17 @@ public class Aplikasi {
         daftarPaketWisata.add(p);
         return p;
     }
-    
-    /*
+   
     public Perjalanan getPerjalanan(int idP) {
         for (Perjalanan p : daftarPerjalanan) {
             if (p.getId() == idP) {
                 return p;
             }
         }
-        Perjalanan p = data;
-        daftarPaketWisata.add(p);
+        Perjalanan p = data.getPerjalanan(idP);
+        daftarPerjalanan.add(p);
         return p;
     }
-    */
     
     public void updatePelanggan(Pelanggan p) {
         data.updatePelanggan(p);
@@ -136,6 +134,14 @@ public class Aplikasi {
         data.updateTempatWisata(p);
     }
     
+    public void updatePaketWisata(PaketWisata p) {
+        data.updatePaketWisata(p);
+    }
+    
+    public void updatePerjalanan(Perjalanan p) {
+        data.updatePerjalanan(p);
+    }
+    
     public void hapusPelanggan(Pelanggan p){
         data.HapusPelanggan(p);
     }
@@ -146,6 +152,14 @@ public class Aplikasi {
     
     public void hapusTempatWisata(TempatWisata tw){
         data.HapusTempatWisata(tw);
+    }
+    
+    public void hapusPaketWisata(PaketWisata tw){
+        data.HapusPaketWisata(tw);
+    }
+    
+    public void hapusPerjalanan(Perjalanan tw){
+        data.HapusPerjalanan(tw);
     }
     
     public String[] getListIdPelanggan() {
